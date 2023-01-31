@@ -1,0 +1,26 @@
+﻿@page
+@model GeradorDeRelatorios.Views.Relatorio.IndexModel
+@{
+}
+
+<h1>Relatórios</h1>
+
+<form asp-action="GerarRelatorio">
+ 
+    <label>Selecione uma data para gerar um relatório do período:</label>
+    <input type="date" name="periodo"/> 
+   <p class="aviso">@ViewBag.aviso</p>
+
+    <div class="radio">
+        <div>
+            <input type="radio" id="html" name="selecao" value="relatorio" checked>
+            <label for="html">Relatório de retenção</label>
+        </div>
+        <div>
+            <input type="radio" id="css" name="selecao" value="grafico">
+            <label for="css">Gráfico de entrada e saída</label><br>
+        </div>
+    </div>
+    <input type="submit" />
+</form>
+

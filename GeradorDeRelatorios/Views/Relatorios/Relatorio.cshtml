@@ -1,0 +1,113 @@
+﻿@page
+@model GeradorDeRelatorios.Views.Relatorios.RelatorioModel
+@{
+}
+<table class="table">
+    <thead>
+        <tr>
+            <th>Mês de referência</th>
+            <th>Qtd</th>
+            <th>1</th>
+            <th>2</th>
+            <th>3</th>
+            <th>4</th>
+            <th>5</th>
+            <th>6</th>
+            <th>7</th>
+            <th>8</th>
+            <th>9</th>
+            <th>10</th>
+            <th>11</th>
+            <th>12</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in ViewBag.dados)
+        {
+            <tr id="linha">
+                <th id="mesAno">@item.dataCreate</th>
+                <th id="quantidade">@item.quantidadeEntrada</th>
+                <td>@item.qtd0</td>
+                <td>@item.qtd1</td>
+                <td>@item.qtd2</td>
+                <td>@item.qtd3</td>
+                <td>@item.qtd4</td>
+                <td>@item.qtd5</td>
+                <td>@item.qtd6</td>
+                <td>@item.qtd7</td>
+                <td>@item.qtd8</td>
+                <td>@item.qtd9</td>
+                <td>@item.qtd10</td>
+                <td>@item.qtd11</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<script>
+    var listaDecabecalhos = document.querySelectorAll("#mesAno")
+    listaDecabecalhos.forEach(formataCabecalhos)
+
+    function formatarData(str) {
+         var meses = [
+        "Janeiro",
+        "Fevereiro",
+        "Março",
+        "Abril",
+        "Maio",
+        "Junho",
+        "Julho",
+        "Agosto",
+        "Setembro",
+        "Outubro",
+        "Novembro",
+        "Dezembro"
+    ];
+        
+        var partes = str.split('-').map(Number);
+        var data = new Date(partes[0], partes[1] - 1, 01);
+        var ano = data.getFullYear();
+        var mes = meses[data.getMonth()];
+        return mes + "/" + ano;
+    }
+
+    function formataCabecalhos(cabecalho)
+    {
+        var dataString = cabecalho.innerHTML
+        var date = formatarData(dataString)
+        cabecalho.innerHTML = date;
+        cabecalho.style.border = '1px solid #333';
+    }
+    console.log("aqui")
+    // bordas
+    var bordas = document.querySelectorAll("td");
+    bordas.forEach(formataLinhas)
+
+    var bordasTitulo = document.querySelectorAll("#quantidade");
+    bordasTitulo.forEach(function(borda) {
+        borda.style.border = '1px solid #333';
+    })
+    
+    function formataLinhas(linha) {
+        if(linha.innerText != ""){
+            linha.style.border = '1px solid #333';
+
+            const valor = linha.innerText;
+            let valorEmInt = parseInt(valor.substring(0, 3))
+
+            if (valorEmInt >= 90)
+                linha.style.backgroundColor = 'green';
+            else if (valorEmInt >= 70)
+                linha.style.backgroundColor = 'yellow';
+            else
+                linha.style.backgroundColor = 'red';
+        }
+    }
+</script>
+
+
+
+
+
+
+

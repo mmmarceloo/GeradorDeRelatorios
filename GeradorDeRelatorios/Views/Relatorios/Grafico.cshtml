@@ -1,0 +1,89 @@
+﻿@page
+@model GeradorDeRelatorios.Views.Graficos.IndexModel
+@{
+}
+<div id="chart_div" class="chart" >
+    
+</div>
+
+<script src="https://www.gstatic.com/charts/loader.js"></script>
+<script>
+    const mes = [
+        '@ViewBag.dados[0].dataCreate',
+        '@ViewBag.dados[1].dataCreate',
+        '@ViewBag.dados[2].dataCreate',
+        '@ViewBag.dados[3].dataCreate',
+        '@ViewBag.dados[4].dataCreate',
+        '@ViewBag.dados[5].dataCreate',
+        '@ViewBag.dados[6].dataCreate',
+        '@ViewBag.dados[7].dataCreate',
+        '@ViewBag.dados[8].dataCreate',
+        '@ViewBag.dados[9].dataCreate',
+        '@ViewBag.dados[10].dataCreate',
+        '@ViewBag.dados[11].dataCreate'
+    ]
+
+    const mesFormatado = [];
+    for (let i = 0; i < mes.length; i++) {
+        mesFormatado[i] = formatarData(mes[i])
+        console.log("mes =>" + mesFormatado[i])
+    }
+
+    function formatarData(str) {
+        var meses = [
+            "Jan",
+            "Fev",
+            "Mar",
+            "Abr",
+            "Mai",
+            "Jun",
+            "Jul",
+            "Ago",
+            "Set",
+            "Out",
+            "Nov",
+            "Dez"
+        ];
+        var partes = str.split('-').map(Number);
+        var data = new Date(partes[0], partes[1] - 1, 01);
+        var ano = data.getFullYear();
+        var mes = meses[data.getMonth()];
+        return mes;
+    }
+
+    google.charts.load('current', { 'packages': ['bar'] });
+    google.charts.setOnLoadCallback(drawChart);
+
+    function drawChart() {
+        const container = document.querySelector('#chart_div');
+        var data = google.visualization.arrayToDataTable([
+            ['Ano', 'Entrada de Clientes', 'Saída de Clientes'],
+            [mesFormatado[0], @ViewBag.dados[0].quantidadeEntrada, @ViewBag.dados[0].quantidadeSaida],
+            [mesFormatado[1], @ViewBag.dados[1].quantidadeEntrada, @ViewBag.dados[1].quantidadeSaida],
+            [mesFormatado[2], @ViewBag.dados[2].quantidadeEntrada, @ViewBag.dados[2].quantidadeSaida],
+            [mesFormatado[3], @ViewBag.dados[3].quantidadeEntrada, @ViewBag.dados[3].quantidadeSaida],
+            [mesFormatado[4], @ViewBag.dados[4].quantidadeEntrada, @ViewBag.dados[4].quantidadeSaida],
+            [mesFormatado[5], @ViewBag.dados[5].quantidadeEntrada, @ViewBag.dados[5].quantidadeSaida],
+            [mesFormatado[6], @ViewBag.dados[6].quantidadeEntrada, @ViewBag.dados[6].quantidadeSaida],
+            [mesFormatado[7], @ViewBag.dados[7].quantidadeEntrada, @ViewBag.dados[7].quantidadeSaida],
+            [mesFormatado[8], @ViewBag.dados[8].quantidadeEntrada, @ViewBag.dados[8].quantidadeSaida],
+            [mesFormatado[9], @ViewBag.dados[9].quantidadeEntrada, @ViewBag.dados[9].quantidadeSaida],
+            [mesFormatado[10], @ViewBag.dados[10].quantidadeEntrada, @ViewBag.dados[10].quantidadeSaida],
+            [mesFormatado[11], @ViewBag.dados[11].quantidadeEntrada, @ViewBag.dados[11].quantidadeSaida]
+        ]);
+
+        var options = {
+            'width': 1200,
+            'height': 500,
+            chart: {
+                title: 'Escritório Inteligente',
+                subtitle: 'Gráfico de Entrada e saída de clientes',
+                
+            }
+        };
+
+        var chart = new google.charts.Bar(document.getElementById('chart_div'));
+        chart.draw(data, options);
+    }
+
+</script>

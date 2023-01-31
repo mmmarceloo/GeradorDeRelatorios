@@ -1,0 +1,49 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+#mesAno {
+    font-weight: bold;
+}
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+
+thead th {
+    border: 2px solid #333;
+}
+
+.logo{
+    width: 10em;
+}
+.aviso {
+    width: 575px;
+    color: tomato;
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 40px;
+    margin-bottom: -1px;
+    margin-top: 5px;
+}
+
+.radio {
+    width: 540px;
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 10px;
+}
+.chart{
+    display:flex;
+    justify-content: center;
+}
