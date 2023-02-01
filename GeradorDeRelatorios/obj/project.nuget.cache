@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Cue9QyvUdtFxDDxs884nBjqpuisz1qjWCKKJQZtzXqWoDLJNlYUuow69T8M8FmilZ/DSHwVTQjwd63pxn/hPPQ==",
+  "dgSpecHash": "++2eLvoIBJ0l4Ey1J1S9hRbrS4a9WITYxXJ5Tm83jfxSabFzgshxMs9/l4DlzDEpKTKq1vtYHfla54hU9/lj0Q==",
   "success": true,
-  "projectFilePath": "C:\\Users\\porca\\source\\repos\\GeradorDeRelatorios\\GeradorDeRelatorios\\GeradorDeRelatorios.csproj",
+  "projectFilePath": "C:\\Users\\porca\\Desktop\\teste2\\GeradorDeRelatorios\\GeradorDeRelatorios\\GeradorDeRelatorios.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\porca\\.nuget\\packages\\newtonsoft.json\\13.0.2\\newtonsoft.json.13.0.2.nupkg.sha512"
   ],

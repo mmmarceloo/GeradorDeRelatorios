@@ -15,13 +15,23 @@ namespace GeradorDeRelatorios.Controllers
 
         public ActionResult GerarRelatorio(DateTime periodo, string selecao)
         {
-            if(periodo == null || periodo == DateTime.MinValue)
+            if(periodo == null || periodo == DateTime.MinValue || periodo >= DateTime.Now)
             {
-                @ViewBag.aviso = "Insira uma data";
+                @ViewBag.aviso = "Insira uma data válida";
                 return View("Views/Relatorios/index.cshtml");
             }
 
-            var dty = "31/" + periodo.Month.ToString() + "/" + periodo.Year.ToString();
+            string dty = "";
+            if(periodo.Month == 2)
+                if (DateTime.IsLeapYear(periodo.Year)) // verifica ano bisexto
+                    dty = "28/" + periodo.Month.ToString() + "/" + periodo.Year.ToString();
+                else
+                    dty = "28/" + periodo.Month.ToString() + "/" + periodo.Year.ToString();
+            else if (periodo.Month == 4 || periodo.Month == 6 || periodo.Month == 9 || periodo.Month == 11)
+                dty = "30/" + periodo.Month.ToString() + "/" + periodo.Year.ToString();
+            else
+                dty = "31/" + periodo.Month.ToString() + "/" + periodo.Year.ToString();
+
             List<Periodo> listaPeriodos = new List<Periodo>();
             try
             {
@@ -38,15 +48,10 @@ namespace GeradorDeRelatorios.Controllers
                     listaPeriodos = Periodo.JsonDesserializar(strJson);
                     List<Periodo> selecionados = listaPeriodos.FindAll(delegate (Periodo p)
                     {
-                        var m = Convert.ToDateTime(dty).AddMonths(-12);
+                        var dataRetroativa = Convert.ToDateTime(dty).AddMonths(-12);
                         return (Convert.ToDateTime(p.date_create) <= Convert.ToDateTime(dty) &&
-                        Convert.ToDateTime(p.date_create) > Convert.ToDateTime(m));
+                        Convert.ToDateTime(p.date_create) > Convert.ToDateTime(dataRetroativa));
                     });
-
-                    foreach (var item in selecionados)
-                    {
-                        Console.WriteLine(item.date_create);
-                    }
 
                     var dataBase = DateTime.Parse(selecionados[0].date_create);
 
@@ -66,7 +71,7 @@ namespace GeradorDeRelatorios.Controllers
                         }
 
                         lista.Add(dataMesAno);
-                        listacompleta.Add(new DadosEstraidos(dataMesAno, 0, item.date_create, dataMesAnoSaida));
+                        listacompleta.Add(new DadosEstraidos(dataMesAno, item.date_create, dataMesAnoSaida));
                     }
                     var conjunto = lista.Distinct();  // Lista: Todos formatados
 
@@ -91,7 +96,7 @@ namespace GeradorDeRelatorios.Controllers
                     {
                         foreach (var itemB in listacompleta)
                         {
-                            if(!itemB.retencao2.Equals("NULL") && itemB.retencao2.Substring(0, 7).Equals(itemA))
+                            if(!itemB.dataSaida.Equals("NULL") && itemB.dataSaida.Substring(0, 7).Equals(itemA))
                             {
                                 contdorSaida[cont] += 1;
                             }
@@ -191,6 +196,18 @@ namespace GeradorDeRelatorios.Controllers
                         dataBase = dataBase.AddMonths(1);
                         Array.Clear(saiu);
                     }
+                    int adicionaMes = 1;
+
+                    while (ListaRetencao.Count < 12)
+                    {
+                        DateTime mes = Convert.ToDateTime(dty).AddMonths(adicionaMes);
+                        string mesString = mes.Month.ToString() + '-' + mes.Year.ToString();
+                        ListaRetencao.Add(new QuantidadeRemove(
+                            mesString,0,0
+                     ));
+                        adicionaMes++;
+                    }
+                    
                     ViewBag.dados = ListaRetencao;
                 }
             }

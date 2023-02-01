@@ -61,11 +61,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\porca\\source\\repos\\GeradorDeRelatorios\\GeradorDeRelatorios\\GeradorDeRelatorios.csproj",
+      "projectUniqueName": "C:\\Users\\porca\\Desktop\\teste2\\GeradorDeRelatorios\\GeradorDeRelatorios\\GeradorDeRelatorios.csproj",
       "projectName": "GeradorDeRelatorios",
-      "projectPath": "C:\\Users\\porca\\source\\repos\\GeradorDeRelatorios\\GeradorDeRelatorios\\GeradorDeRelatorios.csproj",
+      "projectPath": "C:\\Users\\porca\\Desktop\\teste2\\GeradorDeRelatorios\\GeradorDeRelatorios\\GeradorDeRelatorios.csproj",
       "packagesPath": "C:\\Users\\porca\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\porca\\source\\repos\\GeradorDeRelatorios\\GeradorDeRelatorios\\obj\\",
+      "outputPath": "C:\\Users\\porca\\Desktop\\teste2\\GeradorDeRelatorios\\GeradorDeRelatorios\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

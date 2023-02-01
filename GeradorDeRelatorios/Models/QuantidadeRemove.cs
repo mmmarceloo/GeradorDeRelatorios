@@ -2,23 +2,23 @@
 {
     public class QuantidadeRemove
     {
-        public string dataCreate { get; set; }
+        public string? dataCreate { get; set; }
         public double? quantidadeEntrada { get; set; }
         public double? quantidadeSaida { get; set; }
-        public string qtd0 { get; set; }
-        public string qtd1 { get; set; }
-        public string qtd2 { get; set; }
-        public string qtd3 { get; set; }
-        public string qtd4 { get; set; }
-        public string qtd5 { get; set; }
-        public string qtd6 { get; set; }
-        public string qtd7 { get; set; }
-        public string qtd8 { get; set; }
-        public string qtd9 { get; set; }
-        public string qtd10 { get; set; }
-        public string qtd11 { get; set; }
+        public string? qtd0 { get; set; }
+        public string? qtd1 { get; set; }
+        public string? qtd2 { get; set; }
+        public string? qtd3 { get; set; }
+        public string? qtd4 { get; set; }
+        public string? qtd5 { get; set; }
+        public string? qtd6 { get; set; }
+        public string? qtd7 { get; set; }
+        public string? qtd8 { get; set; }
+        public string? qtd9 { get; set; }
+        public string? qtd10 { get; set; }
+        public string? qtd11 { get; set; }
 
-        public QuantidadeRemove(string dataCreate, double? quantidadeEntrada, double? quantidadeSaida, string qtd0, string qtd1, string qtd2, string qtd3, string qtd4, string qtd5, string qtd6, string qtd7, string qtd8, string qtd9, string qtd10, string qtd11)
+        public QuantidadeRemove(string dataCreate = "", double? quantidadeEntrada = null, double? quantidadeSaida = null, string qtd0 = "", string qtd1 = "", string qtd2 = "", string qtd3 = "", string qtd4 = "", string qtd5 = "", string qtd6 = "", string qtd7 = "", string qtd8 = "", string qtd9 = "", string qtd10 = "", string qtd11 = "")
         {
             this.dataCreate = dataCreate;
             this.quantidadeEntrada = quantidadeEntrada;
